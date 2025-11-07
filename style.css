@@ -1,0 +1,460 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-glow: rgba(138, 101, 255, 0.4);
+    --secondary-glow: rgba(59, 130, 246, 0.3);
+    --success-glow: rgba(34, 197, 94, 0.3);
+    --danger-glow: rgba(239, 68, 68, 0.3);
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated background orbs */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(138, 101, 255, 0.6), transparent);
+    top: -200px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+body::after {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.5), transparent);
+    bottom: -250px;
+    right: -250px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Main glass card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 80px rgba(138, 101, 255, 0.2);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glass card shine effect */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+    transition: left 0.5s;
+}
+
+.glass-card:hover::before {
+    left: 100%;
+}
+
+/* Header styles */
+.game-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.badge-difficulty {
+    display: inline-block;
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+/* Input field */
+.glass-input {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    color: white !important;
+    font-size: 2rem !important;
+    font-weight: 600;
+    text-align: center;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+.glass-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.1),
+        0 0 30px rgba(138, 101, 255, 0.5),
+        0 0 60px rgba(59, 130, 246, 0.3) !important;
+    transform: translateY(-2px);
+}
+
+/* Remove number input arrows */
+.glass-input::-webkit-inner-spin-button,
+.glass-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Button styles */
+.glass-btn {
+    background: linear-gradient(135deg, rgba(138, 101, 255, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    color: white !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 1.2rem !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(138, 101, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.glass-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.glass-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 40px rgba(138, 101, 255, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.glass-btn:active {
+    transform: translateY(-1px) !important;
+}
+
+.glass-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Stats section */
+.stats-section {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 1rem;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* History section */
+.history-section {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.history-title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.guess-item {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.guess-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Custom scrollbar */
+.history-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.history-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.history-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.history-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+        .glass-card {
+                padding: 2rem 1.5rem;
+        }
+
+        .game-title {
+                font-size: 2rem;
+        }
+
+        .glass-input {
+                font-size: 1.5rem !important;
+                padding: 1.2rem !important;
+        }
+
+        .stat-number {
+                font-size: 2.5rem;
+        }
+}
+
+/* Hard Mode – aggressive design
+     Keeps the same selectors used by the HTML: .glass-card, .glass-input, .glass-btn, .badge-difficulty, #attempts, etc.
+     Only design is changed; methods and IDs remain untouched. */
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+    --bg-1:#050306; /* deep black */
+    --panel:#0b0b0f;
+    --accent-1:#ff0033; /* hot red */
+    --accent-2:#ff6a88; /* coral */
+    --accent-3:#ff9b3d; /* orange */
+    --muted:#bdbdbd;
+}
+
+html,body{height:100%}
+body{
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;
+    min-height:100vh;
+    background: linear-gradient(180deg,#030205 0%, #07040a 40%, #0a0310 100%);
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* aggressive scanlines + vignette */
+body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+}
+body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;mix-blend-mode:overlay;
+    background-image:linear-gradient(transparent 60%, rgba(0,0,0,0.6));
+}
+
+.container{position:relative;z-index:2;padding:3rem 1rem}
+
+/* HARD glass card — sharper, metallic edge and neon cracks */
+.glass-card{
+    position:relative;overflow:hidden;border-radius:18px;padding:2.5rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(255,0,51,0.04) inset;
+    backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* aggressive decorative slashes */
+.glass-card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;background-image:
+        linear-gradient(120deg, rgba(255,0,51,0.04) 0 2px, transparent 2px 6px, rgba(255,154,61,0.02) 6px 8px);
+    mix-blend-mode:overlay;opacity:0.9;transform:scale(1.03);
+}
+
+/* title — glitch + neon */
+.game-title{
+    font-size:2.6rem;font-weight:900;letter-spacing:-1px;margin-bottom:.4rem;position:relative;
+    color:var(--muted);
+    text-transform:uppercase;
+    display:inline-block;
+}
+.game-title{background:transparent;color:transparent;-webkit-background-clip:text;background-clip:text}
+.game-title:before,.game-title:after{
+    content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;
+}
+.game-title:before{color:var(--accent-1);transform:translateX(2px);opacity:.75;filter:blur(0.6px)}
+.game-title:after{color:var(--accent-2);transform:translateX(-2px);opacity:.55;mix-blend-mode:screen}
+
+/* quick subtle glitch animation */
+@keyframes titleGlitch{
+    0%{transform:translateX(0)}10%{transform:translateX(-2px) skewX(-1deg)}20%{transform:translateX(2px)}30%{transform:translateX(0)}100%{transform:translateX(0)}
+}
+.game-title{animation:titleGlitch 2.5s infinite}
+
+.badge-difficulty{
+    display:inline-block;margin-left:12px;padding:6px 12px;border-radius:999px;
+    background:linear-gradient(90deg,var(--accent-1),var(--accent-3));color:#100;
+    font-weight:800;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;
+    box-shadow:0 8px 30px rgba(255,0,51,0.18), 0 0 18px rgba(255,154,61,0.06) inset;
+}
+
+.subtitle{color:rgba(255,255,255,0.72);margin-top:.75rem;font-weight:500}
+
+/* input — harsh red glow on focus */
+.glass-input{
+    width:100%;border-radius:12px;padding:1.1rem;text-align:center;font-size:1.8rem;font-weight:800;
+    color:#fff;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    border:2px solid rgba(255,255,255,0.03);box-shadow:inset 0 4px 20px rgba(0,0,0,0.6);
+}
+.glass-input::placeholder{color:rgba(255,255,255,0.35);font-weight:600}
+.glass-input:focus{outline:none;border-color:rgba(255,0,51,0.55);box-shadow:0 0 40px rgba(255,0,51,0.18), inset 0 4px 12px rgba(0,0,0,0.6);transform:translateY(-2px)}
+
+/* button — heavy, pulsating red */
+.glass-btn{
+    display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.2rem;border-radius:12px;
+    background:linear-gradient(90deg, rgba(255,0,51,0.95), rgba(255,154,61,0.9));
+    color:#100;font-weight:900;border:0;cursor:pointer;letter-spacing:1px;font-size:1.05rem;
+    box-shadow:0 18px 40px rgba(255,0,51,0.18), 0 2px 8px rgba(0,0,0,0.6) inset;transition:transform .12s ease, box-shadow .12s ease;
+}
+.glass-btn:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 60px rgba(255,0,51,0.28)}
+.glass-btn:active{transform:translateY(-1px) scale(.995)}
+
+/* button pulse */
+@keyframes pulseBtn{0%{box-shadow:0 14px 40px rgba(255,0,51,0.14)}50%{box-shadow:0 30px 70px rgba(255,0,51,0.22)}100%{box-shadow:0 14px 40px rgba(255,0,51,0.14)}}
+.glass-btn{animation: pulseBtn 3s infinite ease-in-out}
+
+/* stats — bold, numeric, slightly cracked */
+.stats-section{margin-top:1.5rem;background:transparent;border-radius:10px;padding:8px;display:flex;justify-content:center}
+.stat-number{font-size:3rem;font-weight:900;color:var(--accent-2);text-shadow:0 10px 30px rgba(255,106,136,0.08);}
+.stat-label{font-size:.8rem;color:rgba(255,255,255,0.6);letter-spacing:1.8px;font-weight:700}
+
+/* history pills — darker, dangerous */
+.history-section{margin-top:1rem;padding:1rem;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,0,51,0.06);}
+.guess-item{display:inline-block;padding:.5rem .9rem;margin:.25rem;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.04);color:#fff;font-weight:800}
+
+/* small screens */
+@media (max-width:768px){
+    .game-title{font-size:1.7rem}
+    .glass-input{font-size:1.4rem;padding:.9rem}
+    .stat-number{font-size:2.2rem}
+    .glass-card{padding:1.5rem}
+}
+
+/* accessibility: reduce animation */
+@media (prefers-reduced-motion: reduce){
+    .game-title, .glass-btn{animation:none}
+    body::before, body::after{animation:none}
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .mode-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .easy-gradient {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        
+        .medium-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .hard-gradient {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .mode-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+                <div class="card dashboard-card shadow-lg border-0 rounded-4 p-4 p-md-5 mb-4">
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 fw-bold text-primary mb-3">Guess The Number</h1>
+                        <p class="lead text-muted">Choose your difficulty level and start playing!</p>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Easy Mode -->
+                        <div class="col-12 col-md-4">
+                            <div class="card mode-card border-0 rounded-4 shadow-sm h-100" onclick="selectMode('easy')">
+                                <div class="card-body text-center p-4">
+                                    <div class="mode-icon easy-gradient text-white">
+                                        <span class="fs-1">😊</span>
+                                    </div>
+                                    <h3 class="fw-bold mb-3">Easy</h3>
+                                    <p class="text-muted mb-3">Perfect for beginners</p>
+                                    <button class="btn btn-success w-100 mt-3 rounded-3 fw-semibold">
+                                        Start Easy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Medium Mode -->
+                        <div class="col-12 col-md-4">
+                            <div class="card mode-card border-0 rounded-4 shadow-sm h-100" onclick="selectMode('medium')">
+                                <div class="card-body text-center p-4">
+                                    <div class="mode-icon medium-gradient text-white">
+                                        <span class="fs-1">😎</span>
+                                    </div>
+                                    <h3 class="fw-bold mb-3">Medium</h3>
+                                    <p class="text-muted mb-3">For casual players</p>
+                                    <button class="btn btn-danger w-100 mt-3 rounded-3 fw-semibold">
+                                        Start Medium
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hard Mode -->
+                        <div class="col-12 col-md-4">
+                            <div class="card mode-card border-0 rounded-4 shadow-sm h-100" onclick=" ('hard')">
+                                <div class="card-body text-center p-4">
+                                    <div class="mode-icon hard-gradient text-white">
+                                        <span class="fs-1">🔥</span>
+                                    </div>
+                                    <h3 class="fw-bold mb-3">Hard</h3>
+                                    <p class="text-muted mb-3">Challenge yourself!</p>
+                                    <button class="btn btn-warning w-100 mt-3 rounded-3 fw-semibold">
+                                        Start Hard
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+               
+                </div>
+                
+               
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
