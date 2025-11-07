@@ -95,7 +95,6 @@ function guess() {
         didOpen: () => playKeyedSound("high"),
       });
     } else {
-      // correct guess
       attempts = 0;
       document.getElementById("attempts").innerText = attempts;
       Swal.fire({
@@ -107,7 +106,7 @@ function guess() {
         didOpen: () => playKeyedSound("win"),
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "easyMode.html";
+          window.location.href = "hardMode.html";
         }
       });
     }

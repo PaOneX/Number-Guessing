@@ -76,7 +76,7 @@ function guess() {
         didOpen: () => playKeyedSound("win"),
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "easyMode.html";
+          window.location.href = "meduimMode.html";
         }
       });
     }
