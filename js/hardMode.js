@@ -1,6 +1,37 @@
-let ranNumber = Math.floor(Math.random() * 100) + 1;
+function enterGame() {
+  const overlay = document.getElementById('warningOverlay');
+  const wrapper = document.getElementById('gameWrapper');
+  const remainingEl = document.getElementById('remainingAttempts');
+  const attemptsEl = document.getElementById('attempts');
+  const input = document.getElementById('ran');
+
+  try {
+    if (overlay) {
+      overlay.style.transition = 'opacity 360ms ease, transform 360ms ease';
+      overlay.style.opacity = '0';
+      overlay.style.transform = 'scale(0.98)';
+      setTimeout(() => { overlay.style.display = 'none'; }, 380);
+    }
+
+    if (wrapper) {
+      wrapper.style.display = 'block';
+      wrapper.style.opacity = '0';
+      wrapper.style.transition = 'opacity 360ms ease';
+      setTimeout(() => { wrapper.style.opacity = '1'; }, 40);
+    }
+
+    if (remainingEl) remainingEl.innerText = '3';
+    if (attemptsEl) attemptsEl.innerText = '0';
+
+    if (input) input.focus({ preventScroll: true });
+  } catch (e) {
+    console.error('enterGame error', e);
+  }
+}
+
+let ranNumber = Math.floor(Math.random() * 1000) + 1;
 let attempts = 0;
-const maxAttempts = 6;
+const maxAttempts = 3;
 console.log(ranNumber);
 
 const soundMap = {
@@ -10,7 +41,7 @@ const soundMap = {
   lose: "voice/parakramabahu-gamma-ganin.mp3",
 };
 
-const singlePlayer = new Audio(soundMap.fallback);
+const singlePlayer = new Audio(soundMap.win);
 singlePlayer.preload = "auto";
 singlePlayer.volume = 0.9;
 
@@ -92,7 +123,7 @@ function guess() {
       didOpen: () => playKeyedSound("lose"),
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = "meduimMode.html";
+        window.location.href = "hardMode.html";
       }
     });
   }

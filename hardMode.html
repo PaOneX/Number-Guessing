@@ -1,142 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guess The Number - AGGRESSIVE MODE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="aggressive-style.css">
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="aggressive-style.css" />
+  </head>
+  <body>
     <!-- Warning Screen Overlay -->
     <div class="warning-overlay" id="warningOverlay">
-        <div class="warning-box">
-            <div class="skull-icon">☠️</div>
-            <h1 class="warning-title">⚠️ DANGER ZONE ⚠️</h1>
-            <p class="warning-text">You are about to enter AGGRESSIVE MODE</p>
-            <p class="warning-subtext">Only 3 attempts. No mercy. No second chances.</p>
-            <button class="enter-btn" onclick="enterGame()">
-                <span>I'M READY</span>
-            </button>
-        </div>
+      <div class="warning-box">
+        <div class="skull-icon">☠️</div>
+        <h1 class="warning-title">⚠️ DANGER ZONE ⚠️</h1>
+        <p class="warning-text">You are about to enter AGGRESSIVE MODE</p>
+        <p class="warning-subtext">
+          Only 3 attempts. No mercy. No second chances.
+        </p>
+        <button class="enter-btn" onclick="enterGame()">
+          <span>I'M READY</span>
+        </button>
+      </div>
     </div>
 
     <!-- Main Game -->
-    <div class="game-wrapper" id="gameWrapper" style="display: none;">
-        <!-- Danger Strips -->
-        <div class="danger-strip danger-strip-top"></div>
-        <div class="danger-strip danger-strip-bottom"></div>
+    <div class="game-wrapper" id="gameWrapper" style="display: none">
+      <!-- Danger Strips -->
+      <div class="danger-strip danger-strip-top"></div>
+      <div class="danger-strip danger-strip-bottom"></div>
 
-        <!-- Lightning Effects -->
-        <div class="lightning lightning-1"></div>
-        <div class="lightning lightning-2"></div>
-        <div class="lightning lightning-3"></div>
+      <!-- Lightning Effects -->
+      <div class="lightning lightning-1"></div>
+      <div class="lightning lightning-2"></div>
+      <div class="lightning lightning-3"></div>
 
-        <div class="container d-flex align-items-center justify-content-center min-vh-100">
-            <div class="col-12 col-md-10 col-lg-8 col-xl-6">
-                <div class="aggressive-card">
-                    <!-- Glitch Effect Overlay -->
-                    <div class="glitch-overlay"></div>
-                    
-                    <!-- Header -->
-                    <div class="text-center mb-4">
-                        <div class="mode-badge-container">
-                            <div class="mode-badge">
-                                <span class="badge-text">AGGRESSIVE</span>
-                                <span class="badge-skull">💀</span>
-                            </div>
-                        </div>
-                        
-                        <h1 class="game-title" data-text="GUESS THE NUMBER">
-                            GUESS THE NUMBER
-                        </h1>
-                        
-                        <div class="warning-banner">
-                            <span class="warning-icon">⚡</span>
-                            <span>EXTREME DIFFICULTY</span>
-                            <span class="warning-icon">⚡</span>
-                        </div>
-                        
-                        <p class="subtitle">Number between 1 and 100</p>
-                    </div>
+      <div
+        class="container d-flex align-items-center justify-content-center min-vh-100"
+      >
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+          <div class="aggressive-card">
+            <!-- Glitch Effect Overlay -->
+            <div class="glitch-overlay"></div>
 
-                    <!-- Attempts Warning Box -->
-                    <div class="attempts-warning">
-                        <div class="warning-pulse"></div>
-                        <span class="attempts-text">
-                            <span class="fire-icon">🔥</span>
-                            ONLY <span class="attempts-count" id="remainingAttempts">3</span> ATTEMPTS
-                            <span class="fire-icon">🔥</span>
-                        </span>
-                    </div>
-
-                    <!-- Input Field -->
-                    <div class="mb-4">
-                        <div class="input-container">
-                            <input 
-                                type="number" 
-                                class="form-control aggressive-input" 
-                                id="ran" 
-                                placeholder="ENTER NOW" 
-                                min="1" 
-                                max="100">
-                            <div class="input-border-glow"></div>
-                        </div>
-                    </div>
-
-                    <!-- Action Button -->
-                    <button type="button" class="btn aggressive-btn w-100 mb-4" onclick="guess()">
-                        <span class="btn-text">FIRE!</span>
-                        <span class="btn-icon">🎯</span>
-                        <div class="btn-particles"></div>
-                    </button>
-
-                    <!-- Stats Section -->
-                    <div class="stats-section">
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="stat-box stat-box-danger">
-                                    <div class="stat-icon">💥</div>
-                                    <div class="stat-number" id="attempts">0</div>
-                                    <div class="stat-label">SHOTS FIRED</div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="stat-box stat-box-warning">
-                                    <div class="stat-icon">⏱️</div>
-                                    <div class="stat-number" id="timeElapsed">00:00</div>
-                                    <div class="stat-label">TIME</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- History Section -->
-                    <div class="history-section" id="historySection" style="display: none;">
-                        <div class="history-header">
-                            <span class="history-icon">📊</span>
-                            <span class="history-title">BATTLE LOG</span>
-                        </div>
-                        <div id="guessHistory" class="history-content"></div>
-                    </div>
-
-                    <!-- Danger Footer -->
-                    <div class="danger-footer">
-                        <div class="footer-line"></div>
-                        <p class="footer-text">
-                            <span class="skull-mini">💀</span>
-                            FAIL AND FACE THE CONSEQUENCES
-                            <span class="skull-mini">💀</span>
-                        </p>
-                    </div>
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <div class="mode-badge-container">
+                <div class="mode-badge">
+                  <span class="badge-text">AGGRESSIVE</span>
+                  <span class="badge-skull">💀</span>
                 </div>
+              </div>
+
+              <h1 class="game-title" data-text="GUESS THE NUMBER">
+                GUESS THE NUMBER
+              </h1>
+
+              <div class="warning-banner">
+                <span class="warning-icon">⚡</span>
+                <span>EXTREME DIFFICULTY</span>
+                <span class="warning-icon">⚡</span>
+              </div>
+
+              <p class="subtitle">Number between 1 and 1000</p>
             </div>
+
+            <!-- Attempts Warning Box -->
+            <div class="attempts-warning">
+              <div class="warning-pulse"></div>
+              <span class="attempts-text">
+                <span class="fire-icon">🔥</span>
+                ONLY
+                <span class="attempts-count" id="remainingAttempts">3</span>
+                ATTEMPTS
+                <span class="fire-icon">🔥</span>
+              </span>
+            </div>
+
+            <!-- Input Field -->
+            <div class="mb-3">
+              <div class="input-container">
+                <input
+                  type="number"
+                  class="form-control aggressive-input"
+                  id="ran"
+                  placeholder="ENTER NOW"
+                  min="1"
+                  max="100"
+                />
+                <div class="input-border-glow"></div>
+              </div>
+            </div>
+
+            <!-- Action Button -->
+            <button
+              type="button"
+              class="btn aggressive-btn w-100 mb-3"
+              onclick="guess()"
+            >
+              <span class="btn-text">Guess</span>
+              <div class="btn-particles"></div>
+            </button>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+              <div class="col-12">
+                <div class="stat-box stat-box-danger">
+                  <div class="stat-number" id="attempts">0</div>
+                  <div class="stat-label">Attempts</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/mediumMode.js"></script>
-    
-</body>
+    <script src="js/hardMode.js"></script>
+  </body>
 </html>

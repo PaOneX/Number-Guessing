@@ -87,7 +87,7 @@ body{
 
 /* input */
 .input-container{position:relative}
-.aggressive-input{width:100%;padding:1rem 1.1rem;border-radius:10px;border:2px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));color:#fff;font-weight:900;font-size:1.6rem;text-align:center}
+.aggressive-input{width:100%;padding:1rem 1rem;border-radius:10px;border:2px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));color:#fff;font-weight:900;font-size:1.6rem;text-align:center}
 .input-border-glow{position:absolute;inset:0;border-radius:10px;pointer-events:none;box-shadow:0 0 40px rgba(255,0,51,0.06) inset;opacity:0;transition:opacity .12s}
 .aggressive-input:focus + .input-border-glow{opacity:1}
 .aggressive-input::placeholder{color:rgba(255,255,255,0.35);font-weight:700}
