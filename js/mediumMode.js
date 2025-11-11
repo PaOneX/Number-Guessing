@@ -1,6 +1,6 @@
 let ranNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
-const maxAttempts = 6;
+const maxAttempts = 5;
 console.log(ranNumber);
 
 const soundMap = {
@@ -64,7 +64,6 @@ function guess() {
         didOpen: () => playKeyedSound("high"),
       });
     } else {
-      // correct guess
       attempts = 0;
       document.getElementById("attempts").innerText = attempts;
       Swal.fire({
@@ -76,7 +75,7 @@ function guess() {
         didOpen: () => playKeyedSound("win"),
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = "meduimMode.html";
+          window.location.href = "mediumMode.html";
         }
       });
     }
@@ -91,9 +90,9 @@ function guess() {
       imageAlt: "Custom image",
       didOpen: () => playKeyedSound("lose"),
     }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "meduimMode.html";
-      }
+    if (result.isConfirmed) {
+      window.location.href = "mediumMode.html";
+    }
     });
   }
 }

@@ -1,6 +1,6 @@
 let ranNumber = Math.floor(Math.random() * 10) + 1;
 let attempts = 0;
-const maxAttempts  = 3; 
+const maxAttempts  = 4; 
 console.log(ranNumber);
 
 const soundMap = {
